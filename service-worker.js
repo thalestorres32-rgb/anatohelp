@@ -1,35 +1,22 @@
-const CACHE_NAME = "anatohelp-cache-v1";
+const CACHE_NAME = "anatohelp-v1";
 
 const urlsToCache = [
-  "index.html",
-  "coracao.html",
-  "pulmao.html",
-  "cavidadenasal.html",
-  "cavidadebucal.html",
-  "checklist_coracao.html",
-  "checklist_pulmao.html",
-  "checklist_cavidadenasal.html",
-  "checklist_cavidadebucal.html",
-  "resumo_coracao.html",
-  "resumo_pulmao.html",
-  "resumo_cavidadenasal.html",
-  "resumo_cavidadebucal.html"
+  "./",
+  "./index.html",
+  "./menu.html",
+  "./style.css"
 ];
 
-self.addEventListener("install", function(event) {
+self.addEventListener("install", event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(function(cache) {
-        return cache.addAll(urlsToCache);
-      })
+      .then(cache => cache.addAll(urlsToCache))
   );
 });
 
-self.addEventListener("fetch", function(event) {
+self.addEventListener("fetch", event => {
   event.respondWith(
     caches.match(event.request)
-      .then(function(response) {
-        return response || fetch(event.request);
-      })
+      .then(response => response || fetch(event.request))
   );
 });
