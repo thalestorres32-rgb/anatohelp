@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Coração</title>
+</head>
+
+<body>
+
+<h1>Coração</h1>
+
+<button onclick="abrirVideo()">Videoaula</button>
+<br><br>
+
+<button onclick="abrirResumo()">Resumo</button>
+<br><br>
+
+<button onclick="abrirChecklist()">Checklist</button>
+<br><br>
+
+<button onclick="voltar()">Voltar</button>
+
+
+<script>
+
+function abrirVideo() {
+  window.open("https://www.youtube.com/watch?v=a5DN-n_AGVw", "_blank")
+}
+
+function abrirResumo() {
+  window.location.href = "resumo-coracao.html"
+}
+
+function abrirChecklist() {
+  window.location.href = "checklist-coracao.html"
+}
+
+function voltar() {
+  window.location.href = "menu.html"
+}
+
+</script>
+
+</body>
+</html>

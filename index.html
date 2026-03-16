@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AnatoHelp</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="tela-inicial">
+
+<h1 class="logo">AnatoHelp</h1>
+
+<p class="subtitulo">
+Aplicativo de apoio ao estudo de anatomia
+</p>
+
+<div class="card">
+
+<p class="texto-justificado">
+Este aplicativo está sendo desenvolvido como parte do projeto de monitoria do conteúdo de anatomia da disciplina de Morfologia II do curso de Medicina da Universidade Federal Fluminense.
+</p>
+
+<p>
+<b>Aluno:</b> Thales Torres Leal
+</p>
+
+<p>
+<b>Professores/Orientadores:</b>
+</p>
+
+<button class="botao-principal" onclick="comecar()">
+Entrar no aplicativo
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function comecar(){
+window.location.href="menu.html"
+}
+
+</script>
+
+<script>
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js")
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Checklist – Cavidade Nasal</title>
+</head>
+
+<body>
+
+<h1>Checklist – Cavidade Nasal</h1>
+
+<p id="progresso">Progresso: 0%</p>
+
+<div id="checklist">
+
+<h2>Topografia e porções externas</h2>
+
+<label><input type="checkbox"> Columela</label><br>
+<label><input type="checkbox"> Raiz</label><br>
+<label><input type="checkbox"> Dorso</label><br>
+<label><input type="checkbox"> Ápice</label><br>
+<label><input type="checkbox"> Septo nasal</label><br>
+
+<h2>Estruturas adjacentes</h2>
+
+<label><input type="checkbox"> Seio frontal</label><br>
+<label><input type="checkbox"> Seio maxilar</label><br>
+<label><input type="checkbox"> Células etmoidais</label><br>
+<label><input type="checkbox"> Seio esfenoidal</label><br>
+
+<h2>Septo nasal</h2>
+
+<label><input type="checkbox"> Cartilagem</label><br>
+<label><input type="checkbox"> Lâmina perpendicular do etmóide</label><br>
+<label><input type="checkbox"> Vômer</label><br>
+
+<h2>Conchas nasais</h2>
+
+<label><input type="checkbox"> Inferior</label><br>
+<label><input type="checkbox"> Média</label><br>
+<label><input type="checkbox"> Superior</label><br>
+
+<h2>Meatos e comunicações</h2>
+
+<label><input type="checkbox"> Meato nasal inferior</label><br>
+<label><input type="checkbox"> Ducto nasolacrimal</label><br>
+<label><input type="checkbox"> Meato nasal médio</label><br>
+<label><input type="checkbox"> Hiato semilunar</label><br>
+<label><input type="checkbox"> Ducto nasofrontal</label><br>
+<label><input type="checkbox"> Óstio do seio maxilar</label><br>
+<label><input type="checkbox"> Processo uncinado</label><br>
+<label><input type="checkbox"> Bula etmoidal</label><br>
+<label><input type="checkbox"> Meato nasal superior</label><br>
+<label><input type="checkbox"> Óstio das células etmoidais posteriores</label><br>
+<label><input type="checkbox"> Recesso esfenoetmoidal</label><br>
+<label><input type="checkbox"> Óstio do seio esfenoidal</label><br>
+
+<h2>Coanas e nasofaringe</h2>
+
+<label><input type="checkbox"> Coanas</label><br>
+<label><input type="checkbox"> Óstio faríngeo da tuba auditiva</label><br>
+<label><input type="checkbox"> Tórus tubário</label><br>
+<label><input type="checkbox"> Tonsila faríngea</label><br>
+<label><input type="checkbox"> Prega salpingopalatina</label><br>
+<label><input type="checkbox"> Prega salpingofaríngea</label><br>
+<label><input type="checkbox"> Palato mole</label><br>
+
+</div>
+
+<br>
+
+<button onclick="voltar()">⬅ Voltar</button>
+
+<script>
+
+const checkboxes = document.querySelectorAll("input[type=checkbox]");
+const progresso = document.getElementById("progresso");
+const chave = "checklist_cavidade_nasal";
+
+function atualizarProgresso() {
+  let marcados = document.querySelectorAll("input[type=checkbox]:checked").length;
+  let total = checkboxes.length;
+  let porcentagem = Math.round((marcados / total) * 100);
+  progresso.innerText = "Progresso: " + porcentagem + "%";
+}
+
+function salvar() {
+  let estados = [];
+  checkboxes.forEach(cb => estados.push(cb.checked));
+  localStorage.setItem(chave, JSON.stringify(estados));
+}
+
+function carregar() {
+  let dados = localStorage.getItem(chave);
+  if (dados) {
+    let estados = JSON.parse(dados);
+    checkboxes.forEach((cb, i) => cb.checked = estados[i]);
+  }
+  atualizarProgresso();
+}
+
+checkboxes.forEach(cb => {
+  cb.addEventListener("change", () => {
+    atualizarProgresso();
+    salvar();
+  });
+});
+
+function voltar() {
+  window.location.href = "cavidadenasal.html"
+}
+
+carregar();
+
+</script>
+
+</body>
+</html>

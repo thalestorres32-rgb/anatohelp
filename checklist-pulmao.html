@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Checklist Pulmão e Pleuras</title>
+</head>
+
+<body>
+
+<h1>Checklist – Pulmão e Pleuras</h1>
+
+<p id="progressoPulmao">Progresso: 0%</p>
+
+<h3>Vias aéreas</h3>
+
+<label><input type="checkbox" id="traqueia"> Traqueia</label><br>
+<label><input type="checkbox" id="aneis"> Anéis traqueais</label><br>
+<label><input type="checkbox" id="musculoTraqueal"> Músculo traqueal</label><br>
+<label><input type="checkbox" id="carina"> Carina (bifurcação)</label><br>
+
+<h3>Pulmões e faces</h3>
+
+<label><input type="checkbox" id="pd"> Pulmão direito</label><br>
+<label><input type="checkbox" id="pe"> Pulmão esquerdo</label><br>
+<label><input type="checkbox" id="fhpd"> Fissura horizontal (PD)</label><br>
+<label><input type="checkbox" id="fopd"> Fissura oblíqua (PD)</label><br>
+<label><input type="checkbox" id="fope"> Fissura oblíqua (PE)</label><br>
+<label><input type="checkbox" id="lingula"> Língula (PE)</label><br>
+<label><input type="checkbox" id="impressaoEsofagica"> Impressão esofágica (PD)</label><br>
+<label><input type="checkbox" id="faceMediastinal"> Face mediastinal</label><br>
+<label><input type="checkbox" id="faceDiafragmatica"> Face diafragmática</label><br>
+<label><input type="checkbox" id="faceCostal"> Face costal</label><br>
+
+<h3>Pleuras</h3>
+
+<label><input type="checkbox" id="pleuraParietal"> Pleura parietal</label><br>
+<label><input type="checkbox" id="pleuraVisceral"> Pleura visceral</label><br>
+
+<h3>Brônquios principais</h3>
+
+<label><input type="checkbox" id="bpd"> Brônquio principal direito</label><br>
+<label><input type="checkbox" id="bpe"> Brônquio principal esquerdo</label><br>
+
+<h3>Brônquios – Pulmão direito</h3>
+
+<label><input type="checkbox" id="lsd"> Brônquio lobar superior direito</label><br>
+<label><input type="checkbox" id="bi"> Segmentar apical (BI)</label><br>
+<label><input type="checkbox" id="bii"> Segmentar posterior (BII)</label><br>
+<label><input type="checkbox" id="biii"> Segmentar anterior (BIII)</label><br>
+
+<label><input type="checkbox" id="lmd"> Brônquio lobar médio direito</label><br>
+<label><input type="checkbox" id="biv"> Segmentar lateral (BIV)</label><br>
+<label><input type="checkbox" id="bv"> Segmentar medial (BV)</label><br>
+
+<label><input type="checkbox" id="lid"> Brônquio lobar inferior direito</label><br>
+<label><input type="checkbox" id="bvi"> Segmentar superior (BVI)</label><br>
+<label><input type="checkbox" id="bvii"> Basal medial (BVII)</label><br>
+<label><input type="checkbox" id="bviii"> Basal anterior (BVIII)</label><br>
+<label><input type="checkbox" id="bix"> Basal lateral (BIX)</label><br>
+<label><input type="checkbox" id="bx"> Basal posterior (BX)</label><br>
+
+<h3>Brônquios – Pulmão esquerdo</h3>
+
+<label><input type="checkbox" id="lse"> Brônquio lobar superior esquerdo</label><br>
+<label><input type="checkbox" id="bi_ii"> Segmentar apicoposterior (BI+II)</label><br>
+<label><input type="checkbox" id="biii_e"> Segmentar anterior (BIII)</label><br>
+<label><input type="checkbox" id="biv_e"> Lingular superior (BIV)</label><br>
+<label><input type="checkbox" id="bv_e"> Lingular inferior (BV)</label><br>
+
+<label><input type="checkbox" id="lie"> Brônquio lobar inferior esquerdo</label><br>
+<label><input type="checkbox" id="bvi_e"> Segmentar superior (BVI)</label><br>
+<label><input type="checkbox" id="bvii_viii"> Basal anteromedial (BVII+VIII)</label><br>
+<label><input type="checkbox" id="bix_e"> Basal lateral (BIX)</label><br>
+<label><input type="checkbox" id="bx_e"> Basal posterior (BX)</label><br>
+
+<h3>Hilo e vasos</h3>
+
+<label><input type="checkbox" id="hilo"> Hilo pulmonar</label><br>
+<label><input type="checkbox" id="arterias"> Artérias pulmonares</label><br>
+<label><input type="checkbox" id="veias"> Veias pulmonares</label><br>
+
+<br><br>
+<button onclick="voltar()">Voltar</button>
+
+<script>
+
+const estruturasPulmao = document.querySelectorAll("input[type=checkbox]")
+
+estruturasPulmao.forEach(item => {
+  const valorSalvo = localStorage.getItem(item.id)
+  item.checked = valorSalvo === "true"
+
+  item.addEventListener("change", function() {
+    localStorage.setItem(item.id, item.checked)
+    atualizarProgresso()
+  })
+})
+
+function atualizarProgresso() {
+
+  const total = estruturasPulmao.length
+  let marcados = 0
+
+  estruturasPulmao.forEach(item => {
+    if (item.checked) marcados++
+  })
+
+  const porcentagem = Math.round((marcados / total) * 100)
+
+  document.getElementById("progressoPulmao").innerText =
+    "Progresso: " + porcentagem + "%"
+}
+
+function voltar() {
+  window.location.href = "pulmao.html"
+}
+
+atualizarProgresso()
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Checklist Coração</title>
+</head>
+
+<body>
+
+<h1>Checklist – Coração</h1>
+
+<p id="progressoCoracao">Progresso: 0%</p>
+
+<label><input type="checkbox" id="ad"> Átrio direito</label><br>
+<label><input type="checkbox" id="ae"> Átrio esquerdo</label><br>
+<label><input type="checkbox" id="vd"> Ventrículo direito</label><br>
+<label><input type="checkbox" id="ve"> Ventrículo esquerdo</label><br>
+<label><input type="checkbox" id="vm"> Valva mitral</label><br><br>
+
+<button onclick="voltar()">Voltar</button>
+
+<script>
+
+const estruturasCoracao = ["ad", "ae", "vd", "ve", "vm"]
+
+function carregarChecklist() {
+
+  estruturasCoracao.forEach(id => {
+    const valorSalvo = localStorage.getItem(id)
+    document.getElementById(id).checked = valorSalvo === "true"
+  })
+
+  atualizarProgresso()
+}
+
+estruturasCoracao.forEach(id => {
+  document.getElementById(id).addEventListener("change", function() {
+    localStorage.setItem(id, this.checked)
+    atualizarProgresso()
+  })
+})
+
+function atualizarProgresso() {
+
+  let marcados = 0
+
+  estruturasCoracao.forEach(id => {
+    if (document.getElementById(id).checked) {
+      marcados++
+    }
+  })
+
+  const porcentagem = Math.round((marcados / estruturasCoracao.length) * 100)
+
+  document.getElementById("progressoCoracao").innerText =
+    "Progresso: " + porcentagem + "%"
+}
+
+function voltar() {
+  window.location.href = "coracao.html"
+}
+
+carregarChecklist()
+
+</script>
+
+</body>
+</html>

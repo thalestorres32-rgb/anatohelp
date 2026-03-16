@@ -1,0 +1,222 @@
+body{
+font-family: Roboto, Arial, sans-serif;
+margin:0;
+background:#F1F3F4;
+}
+
+/* CABEÇALHO */
+
+header{
+background:#1976D2;
+color:white;
+padding:18px;
+font-size:20px;
+text-align:center;
+font-weight:500;
+box-shadow:0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* CONTAINER */
+
+.container{
+padding:20px;
+max-width:600px;
+margin:auto;
+}
+
+/* BOTÃO VOLTAR */
+
+.voltar{
+display:inline-block;
+margin-bottom:20px;
+text-decoration:none;
+color:#1976D2;
+font-weight:500;
+}
+
+/* CARD */
+
+.card{
+background:white;
+border-radius:10px;
+padding:20px;
+margin-bottom:20px;
+box-shadow:0 2px 6px rgba(0,0,0,0.15);
+}
+
+.card h2{
+margin-top:0;
+font-size:20px;
+color:#333;
+}
+
+/* BOTÕES */
+
+.buttons{
+display:flex;
+gap:10px;
+margin-top:15px;
+}
+
+button{
+flex:1;
+padding:12px;
+border:none;
+border-radius:6px;
+font-size:14px;
+cursor:pointer;
+font-weight:500;
+}
+
+.video{
+background:#1976D2;
+color:white;
+}
+
+.resumo{
+background:#E53935;
+color:white;
+}
+
+.checklist{
+background:#43A047;
+color:white;
+}
+
+button:hover{
+opacity:0.9;
+}
+
+h1{
+font-size:26px;
+color:#333;
+margin-bottom:25px;
+}
+
+/* título da tela inicial */
+
+.titulo-app{
+font-size:34px;
+text-align:center;
+margin-bottom:25px;
+color:#333;
+}
+
+/* texto justificado */
+
+.texto-justificado{
+text-align:justify;
+margin-bottom:15px;
+line-height:1.6;
+}
+
+/* botão maior da tela inicial */
+
+.botao-grande{
+width:100%;
+margin-top:20px;
+padding:18px;
+font-size:18px;
+}
+
+/* TELA INICIAL */
+
+.tela-inicial{
+max-width:500px;
+margin:auto;
+padding:30px 20px;
+text-align:center;
+}
+
+.logo{
+font-size:38px;
+color:#1976D2;
+margin-bottom:10px;
+}
+
+.subtitulo{
+font-size:18px;
+margin-bottom:30px;
+color:#555;
+}
+
+/* BOTÃO PRINCIPAL */
+
+.botao-principal{
+width:100%;
+padding:16px;
+font-size:18px;
+border:none;
+border-radius:8px;
+background:#1976D2;
+color:white;
+margin-top:20px;
+}
+
+/* MENU */
+
+.container-menu{
+max-width:500px;
+margin:auto;
+padding:20px;
+}
+
+/* CARDS DO MENU */
+
+.card-menu{
+background:white;
+padding:22px;
+margin-bottom:18px;
+border-radius:12px;
+font-size:18px;
+font-weight:500;
+text-align:center;
+box-shadow:0 4px 8px rgba(0,0,0,0.1);
+cursor:pointer;
+transition:0.2s;
+}
+
+.card-menu:hover{
+transform:scale(1.02);
+}
+
+/* página de estrutura */
+
+.estrutura{
+max-width:500px;
+margin:auto;
+padding:20px;
+}
+
+/* título da estrutura */
+
+.titulo-estrutura{
+text-align:center;
+margin-bottom:25px;
+}
+
+/* texto das descrições */
+
+.descricao{
+text-align:justify;
+margin-bottom:15px;
+}
+
+/* botão dentro dos cards */
+
+.botao-card{
+width:100%;
+}
+
+/* botão voltar */
+
+.botao-voltar{
+width:100%;
+margin-top:10px;
+padding:14px;
+border:none;
+border-radius:8px;
+background:#555;
+color:white;
+font-size:16px;
+}

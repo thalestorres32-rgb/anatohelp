@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Checklist – Cavidade Bucal</title>
+</head>
+
+<body>
+
+<h1>Checklist – Cavidade Bucal</h1>
+
+<p id="progresso">Progresso: 0%</p>
+
+<div id="checklist">
+
+<h2>Porções ósseas</h2>
+
+<label><input type="checkbox"> Mandíbula</label><br>
+<label><input type="checkbox"> Maxila</label><br>
+<label><input type="checkbox"> Palato duro</label><br>
+
+<h2>Componentes e porções da língua</h2>
+
+<label><input type="checkbox"> Ápice lingual</label><br>
+<label><input type="checkbox"> Corpo da língua</label><br>
+<label><input type="checkbox"> Dorso da língua</label><br>
+<label><input type="checkbox"> Ventre da língua</label><br>
+<label><input type="checkbox"> Raiz da língua</label><br>
+<label><input type="checkbox"> Frênulo lingual</label><br>
+<label><input type="checkbox"> Forame cego</label><br>
+<label><input type="checkbox"> Sulco terminal</label><br>
+<label><input type="checkbox"> Tonsila lingual</label><br>
+
+<h2>Músculos da língua</h2>
+
+<label><input type="checkbox"> Intrínsecos longitudinais</label><br>
+<label><input type="checkbox"> Intrínsecos transversais</label><br>
+<label><input type="checkbox"> Intrínsecos verticais</label><br>
+
+<label><input type="checkbox"> Hioglosso</label><br>
+<label><input type="checkbox"> Genioglosso</label><br>
+<label><input type="checkbox"> Palatoglosso</label><br>
+<label><input type="checkbox"> Estiloglosso</label><br>
+
+<h2>Assoalho da boca</h2>
+
+<label><input type="checkbox"> Milohioideo</label><br>
+<label><input type="checkbox"> Geniohioideo</label><br>
+
+<h2>Véu palatino e orofaringe</h2>
+
+<label><input type="checkbox"> Músculos do véu palatino</label><br>
+<label><input type="checkbox"> Úvula</label><br>
+<label><input type="checkbox"> Arco palatoglosso</label><br>
+<label><input type="checkbox"> Arco palatofaríngeo</label><br>
+<label><input type="checkbox"> Istmo das fauces</label><br>
+<label><input type="checkbox"> Valéculas</label><br>
+<label><input type="checkbox"> Prega glossoepiglótica mediana</label><br>
+<label><input type="checkbox"> Prega glossoepiglótica lateral</label><br>
+
+</div>
+
+<br>
+
+<button onclick="voltar()">⬅ Voltar</button>
+
+<script>
+
+const checkboxes = document.querySelectorAll("input[type=checkbox]");
+const progresso = document.getElementById("progresso");
+const chave = "checklist_cavidade_bucal";
+
+function atualizarProgresso() {
+  let marcados = document.querySelectorAll("input[type=checkbox]:checked").length;
+  let total = checkboxes.length;
+  let porcentagem = Math.round((marcados / total) * 100);
+  progresso.innerText = "Progresso: " + porcentagem + "%";
+}
+
+function salvar() {
+  let estados = [];
+  checkboxes.forEach(cb => estados.push(cb.checked));
+  localStorage.setItem(chave, JSON.stringify(estados));
+}
+
+function carregar() {
+  let dados = localStorage.getItem(chave);
+  if (dados) {
+    let estados = JSON.parse(dados);
+    checkboxes.forEach((cb, i) => cb.checked = estados[i]);
+  }
+  atualizarProgresso();
+}
+
+checkboxes.forEach(cb => {
+  cb.addEventListener("change", () => {
+    atualizarProgresso();
+    salvar();
+  });
+});
+
+function voltar() {
+  window.location.href = "cavidadebucal.html"
+}
+
+carregar();
+
+</script>
+
+</body>
+</html>

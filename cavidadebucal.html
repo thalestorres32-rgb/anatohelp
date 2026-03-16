@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Cavidade bucal</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+AnatoHelp
+</header>
+
+<div class="container estrutura">
+
+<h1 class="titulo-estrutura">Cavidade bucal</h1>
+
+
+<div class="card">
+
+<p class="descricao">
+Videoaula: Anatomia Aplicada da Cavidade bucal - Prof. Márcio Babinski - Departamento de Morfologia da UFF.
+</p>
+
+<button class="video botao-card" onclick="abrirVideo()">
+Assistir videoaula
+</button>
+
+</div>
+
+
+<div class="card">
+
+<p class="descricao">
+Resumo breve sobre Cavidade bucal.
+</p>
+
+<button class="resumo botao-card" onclick="abrirResumo()">
+Abrir resumo
+</button>
+
+</div>
+
+
+<div class="card">
+
+<p class="descricao">
+Revisão prática - identificação das estruturas.
+</p>
+
+<button class="checklist botao-card" onclick="abrirChecklist()">
+Abrir checklist
+</button>
+
+</div>
+
+
+<button class="botao-voltar" onclick="voltar()">
+← Voltar
+</button>
+
+</div>
+
+<script>
+
+function abrirVideo() {
+window.open("https://www.youtube.com/watch?v=Fup8vz2MIQo","_blank")
+}
+
+function abrirResumo() {
+window.location.href = "resumo-cavidadebucal.html"
+}
+
+function abrirChecklist() {
+window.location.href = "checklist-cavidadebucal.html"
+}
+
+function voltar() {
+window.location.href = "menu.html"
+}
+
+</script>
+
+</body>
+</html>
