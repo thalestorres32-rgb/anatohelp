@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AnatoHelp</title>
-    <link rel="manifest" href="./manifest.json">
     <link rel="stylesheet" href="style.css">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
 </head>
 
 <body>
@@ -33,61 +34,17 @@
             <button class="botao-principal" onclick="comecar()">
                 Entrar no aplicativo
             </button>
-
-            <br><br>
-
-            <button id="installBtn" class="botao-principal" style="display:none; background-color: #28a745;">
-                Instalar AnatoHelp no Celular
-            </button>
         </div>
     </div>
 
     <script>
+        // Função simples de navegação
         function comecar() {
             window.location.href = "menu.html";
         }
 
-        // Registro do Service Worker
-        if ("serviceWorker" in navigator) {
-            window.addEventListener("load", () => {
-                // Adicionado './' para garantir caminho relativo no GitHub Pages
-                navigator.serviceWorker.register("./service-worker.js")
-                    .then(reg => console.log("Service Worker carregado com sucesso."))
-                    .catch(err => console.error("Falha ao registrar Service Worker:", err));
-            });
-        }
-
-        let deferredPrompt;
-        const installBtn = document.getElementById("installBtn");
-
-        // Este evento só dispara se o manifest.json e o service-worker estiverem perfeitos
-        window.addEventListener("beforeinstallprompt", (e) => {
-            console.log("Evento beforeinstallprompt disparado!");
-            e.preventDefault();
-            deferredPrompt = e;
-            installBtn.style.display = "inline-block";
-        });
-
-        installBtn.addEventListener("click", async () => {
-            if (!deferredPrompt) {
-                alert("O navegador ainda não permitiu a instalação. Tente recarregar a página.");
-                return;
-            }
-
-            deferredPrompt.prompt();
-            const { outcome } = await deferredPrompt.userChoice;
-            
-            if (outcome === 'accepted') {
-                console.log('Usuário aceitou a instalação');
-                installBtn.style.display = "none";
-            }
-            deferredPrompt = null;
-        });
-
-        window.addEventListener('appinstalled', () => {
-            console.log('AnatoHelp instalado!');
-            installBtn.style.display = "none";
-        });
+        // Removido o registro do Service Worker e a lógica do installBtn
+        // O WebIntoApp tratará a instalação via ficheiro APK.
     </script>
 
 </body>
