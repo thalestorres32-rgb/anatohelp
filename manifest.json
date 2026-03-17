@@ -1,8 +1,10 @@
 {
   "name": "AnatoHelp",
   "short_name": "AnatoHelp",
-  "start_url": "./",
-  "scope": "./",
+
+  "start_url": "/anatohelp/",
+  "scope": "/anatohelp/",
+
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1976D2",
