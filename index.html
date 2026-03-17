@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AnatoHelp</title>
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="./manifest.json">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -43,53 +43,49 @@
     </div>
 
     <script>
-        // Função para navegar para o menu
         function comecar() {
             window.location.href = "menu.html";
         }
 
-        // 1. Registro do Service Worker (Essencial para PWA)
+        // Registro do Service Worker
         if ("serviceWorker" in navigator) {
             window.addEventListener("load", () => {
+                // Adicionado './' para garantir caminho relativo no GitHub Pages
                 navigator.serviceWorker.register("./service-worker.js")
-                    .then(reg => console.log("Service Worker ativo!"))
-                    .catch(err => console.log("Erro no SW:", err));
+                    .then(reg => console.log("Service Worker carregado com sucesso."))
+                    .catch(err => console.error("Falha ao registrar Service Worker:", err));
             });
         }
 
-        // 2. Lógica para capturar o evento de instalação
         let deferredPrompt;
         const installBtn = document.getElementById("installBtn");
 
+        // Este evento só dispara se o manifest.json e o service-worker estiverem perfeitos
         window.addEventListener("beforeinstallprompt", (e) => {
-            // Impede o Chrome de mostrar o prompt automático muito cedo
+            console.log("Evento beforeinstallprompt disparado!");
             e.preventDefault();
-            // Guarda o evento para ser disparado quando o usuário clicar no seu botão
             deferredPrompt = e;
-            // Mostra o seu botão de instalação personalizado
             installBtn.style.display = "inline-block";
         });
 
-        // 3. Ação ao clicar no botão de instalar
         installBtn.addEventListener("click", async () => {
-            if (!deferredPrompt) return;
+            if (!deferredPrompt) {
+                alert("O navegador ainda não permitiu a instalação. Tente recarregar a página.");
+                return;
+            }
 
-            // Mostra o prompt de instalação do sistema (Android/iOS/Chrome)
             deferredPrompt.prompt();
-
-            // Verifica se o usuário aceitou ou recusou
             const { outcome } = await deferredPrompt.userChoice;
-            console.log(`Usuário respondeu à instalação: ${outcome}`);
-
-            // Limpa o prompt para que não possa ser usado novamente
+            
+            if (outcome === 'accepted') {
+                console.log('Usuário aceitou a instalação');
+                installBtn.style.display = "none";
+            }
             deferredPrompt = null;
-            // Esconde o botão após a escolha
-            installBtn.style.display = "none";
         });
 
-        // 4. Esconder o botão se o app já estiver instalado
         window.addEventListener('appinstalled', () => {
-            console.log('AnatoHelp instalado com sucesso!');
+            console.log('AnatoHelp instalado!');
             installBtn.style.display = "none";
         });
     </script>
