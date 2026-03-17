@@ -1,9 +1,11 @@
-const CACHE_NAME = "anatohelp-v5";
+const CACHE_NAME = "anatohelp-v6-icons";
 const assets = [
   "./",
   "./index.html",
   "./style.css",
-  "./manifest.json"
+  "./manifest.json",
+  "./icon-192.png",
+  "./icon-512.png"
 ];
 
 self.addEventListener("install", (event) => {
