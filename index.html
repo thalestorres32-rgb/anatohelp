@@ -1,96 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>AnatoHelp</title>
-
-<link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="style.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnatoHelp</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="tela-inicial">
+    <div class="tela-inicial">
+        <h1 class="logo">AnatoHelp</h1>
+        <p class="subtitulo">
+            Aplicativo de apoio ao estudo de anatomia
+        </p>
 
-<h1 class="logo">AnatoHelp</h1>
+        <div class="card">
+            <p class="texto-justificado">
+                Este aplicativo está sendo desenvolvido como parte do projeto de monitoria do conteúdo de anatomia da disciplina de Morfologia II do curso de Medicina da Universidade Federal Fluminense.
+            </p>
 
-<p class="subtitulo">
-Aplicativo de apoio ao estudo de anatomia
-</p>
+            <p>
+                <b>Aluno:</b> Thales Torres Leal
+            </p>
 
-<div class="card">
+            <p>
+                <b>Professores/Orientadores:</b>
+            </p>
 
-<p class="texto-justificado">
-Este aplicativo está sendo desenvolvido como parte do projeto de monitoria do conteúdo de anatomia da disciplina de Morfologia II do curso de Medicina da Universidade Federal Fluminense.
-</p>
+            <button class="botao-principal" onclick="comecar()">
+                Entrar no aplicativo
+            </button>
 
-<p>
-<b>Aluno:</b> Thales Torres Leal
-</p>
+            <br><br>
 
-<p>
-<b>Professores/Orientadores:</b>
-</p>
+            <button id="installBtn" class="botao-principal" style="display:none; background-color: #28a745;">
+                Instalar AnatoHelp no Celular
+            </button>
+        </div>
+    </div>
 
-<button class="botao-principal" onclick="comecar()">
-Entrar no aplicativo
-</button>
+    <script>
+        // Função para navegar para o menu
+        function comecar() {
+            window.location.href = "menu.html";
+        }
 
-<br><br>
+        // 1. Registro do Service Worker (Essencial para PWA)
+        if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("./service-worker.js")
+                    .then(reg => console.log("Service Worker ativo!"))
+                    .catch(err => console.log("Erro no SW:", err));
+            });
+        }
 
-<button id="installBtn" style="display:none">
-Instalar aplicativo
-</button>
+        // 2. Lógica para capturar o evento de instalação
+        let deferredPrompt;
+        const installBtn = document.getElementById("installBtn");
 
-</div>
+        window.addEventListener("beforeinstallprompt", (e) => {
+            // Impede o Chrome de mostrar o prompt automático muito cedo
+            e.preventDefault();
+            // Guarda o evento para ser disparado quando o usuário clicar no seu botão
+            deferredPrompt = e;
+            // Mostra o seu botão de instalação personalizado
+            installBtn.style.display = "inline-block";
+        });
 
-</div>
+        // 3. Ação ao clicar no botão de instalar
+        installBtn.addEventListener("click", async () => {
+            if (!deferredPrompt) return;
 
-<script>
+            // Mostra o prompt de instalação do sistema (Android/iOS/Chrome)
+            deferredPrompt.prompt();
 
-function comecar(){
-window.location.href="menu.html"
-}
+            // Verifica se o usuário aceitou ou recusou
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`Usuário respondeu à instalação: ${outcome}`);
 
-</script>
+            // Limpa o prompt para que não possa ser usado novamente
+            deferredPrompt = null;
+            // Esconde o botão após a escolha
+            installBtn.style.display = "none";
+        });
 
-<script>
-
-if ("serviceWorker" in navigator) {
-navigator.serviceWorker.register("./service-worker.js")
-}
-
-</script>
-
-<script>
-
-let deferredPrompt;
-
-window.addEventListener("beforeinstallprompt", (e) => {
-
-e.preventDefault();
-deferredPrompt = e;
-
-document.getElementById("installBtn").style.display = "inline-block";
-
-});
-
-document.getElementById("installBtn").addEventListener("click", async () => {
-
-deferredPrompt.prompt();
-
-const { outcome } = await deferredPrompt.userChoice;
-
-deferredPrompt = null;
-
-});
-
-</script>
+        // 4. Esconder o botão se o app já estiver instalado
+        window.addEventListener('appinstalled', () => {
+            console.log('AnatoHelp instalado com sucesso!');
+            installBtn.style.display = "none";
+        });
+    </script>
 
 </body>
 </html>
